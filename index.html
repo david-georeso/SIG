@@ -15,7 +15,7 @@
         <style>
         #map {
             width: 1103px;
-            height: 812px;
+            height: 813px;
         }
         </style>
         <title></title>
@@ -50,6 +50,9 @@
         <script src="data/BD_BATI_13.js"></script>
         <script src="data/BD_PARCELLE_14.js"></script>
         <script src="data/BD_CHEMIN_15.js"></script>
+        <script src="data/BD_CABLE_HTA_16.js"></script>
+        <script src="data/BD_CABLE_BT_17.js"></script>
+        <script src="data/BD_CABLE_BT_AERIEN_18.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -74,10 +77,10 @@
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
-            primaryLengthUnit: 'feet',
-            secondaryLengthUnit: 'miles',
-            primaryAreaUnit: 'sqfeet',
-            secondaryAreaUnit: 'sqmiles'
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
         });
         measureControl.addTo(map);
         document.getElementsByClassName('leaflet-control-measure-toggle')[0]
@@ -1279,6 +1282,183 @@
         });
         bounds_group.addLayer(layer_BD_CHEMIN_15);
         map.addLayer(layer_BD_CHEMIN_15);
+        function pop_BD_CABLE_HTA_16(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Layer'] !== null ? Autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PaperSpace'] !== null ? Autolinker.link(feature.properties['PaperSpace'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SubClasses'] !== null ? Autolinker.link(feature.properties['SubClasses'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Linetype'] !== null ? Autolinker.link(feature.properties['Linetype'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EntityHand'] !== null ? Autolinker.link(feature.properties['EntityHand'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Text'] !== null ? Autolinker.link(feature.properties['Text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BD_CABLE_HTA_16_0() {
+            return {
+                pane: 'pane_BD_CABLE_HTA_16',
+                opacity: 1,
+                color: 'rgba(255,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BD_CABLE_HTA_16');
+        map.getPane('pane_BD_CABLE_HTA_16').style.zIndex = 416;
+        map.getPane('pane_BD_CABLE_HTA_16').style['mix-blend-mode'] = 'normal';
+        var layer_BD_CABLE_HTA_16 = new L.geoJson(json_BD_CABLE_HTA_16, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BD_CABLE_HTA_16',
+            layerName: 'layer_BD_CABLE_HTA_16',
+            pane: 'pane_BD_CABLE_HTA_16',
+            onEachFeature: pop_BD_CABLE_HTA_16,
+            style: style_BD_CABLE_HTA_16_0,
+        });
+        bounds_group.addLayer(layer_BD_CABLE_HTA_16);
+        map.addLayer(layer_BD_CABLE_HTA_16);
+        function pop_BD_CABLE_BT_17(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Layer'] !== null ? Autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PaperSpace'] !== null ? Autolinker.link(feature.properties['PaperSpace'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SubClasses'] !== null ? Autolinker.link(feature.properties['SubClasses'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Linetype'] !== null ? Autolinker.link(feature.properties['Linetype'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EntityHand'] !== null ? Autolinker.link(feature.properties['EntityHand'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Text'] !== null ? Autolinker.link(feature.properties['Text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BD_CABLE_BT_17_0() {
+            return {
+                pane: 'pane_BD_CABLE_BT_17',
+                opacity: 1,
+                color: 'rgba(19,114,247,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BD_CABLE_BT_17');
+        map.getPane('pane_BD_CABLE_BT_17').style.zIndex = 417;
+        map.getPane('pane_BD_CABLE_BT_17').style['mix-blend-mode'] = 'normal';
+        var layer_BD_CABLE_BT_17 = new L.geoJson(json_BD_CABLE_BT_17, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BD_CABLE_BT_17',
+            layerName: 'layer_BD_CABLE_BT_17',
+            pane: 'pane_BD_CABLE_BT_17',
+            onEachFeature: pop_BD_CABLE_BT_17,
+            style: style_BD_CABLE_BT_17_0,
+        });
+        bounds_group.addLayer(layer_BD_CABLE_BT_17);
+        map.addLayer(layer_BD_CABLE_BT_17);
+        function pop_BD_CABLE_BT_AERIEN_18(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Layer'] !== null ? Autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PaperSpace'] !== null ? Autolinker.link(feature.properties['PaperSpace'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SubClasses'] !== null ? Autolinker.link(feature.properties['SubClasses'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Linetype'] !== null ? Autolinker.link(feature.properties['Linetype'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EntityHand'] !== null ? Autolinker.link(feature.properties['EntityHand'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Text'] !== null ? Autolinker.link(feature.properties['Text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BD_CABLE_BT_AERIEN_18_0() {
+            return {
+                pane: 'pane_BD_CABLE_BT_AERIEN_18',
+                opacity: 1,
+                color: 'rgba(231,113,72,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BD_CABLE_BT_AERIEN_18');
+        map.getPane('pane_BD_CABLE_BT_AERIEN_18').style.zIndex = 418;
+        map.getPane('pane_BD_CABLE_BT_AERIEN_18').style['mix-blend-mode'] = 'normal';
+        var layer_BD_CABLE_BT_AERIEN_18 = new L.geoJson(json_BD_CABLE_BT_AERIEN_18, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BD_CABLE_BT_AERIEN_18',
+            layerName: 'layer_BD_CABLE_BT_AERIEN_18',
+            pane: 'pane_BD_CABLE_BT_AERIEN_18',
+            onEachFeature: pop_BD_CABLE_BT_AERIEN_18,
+            style: style_BD_CABLE_BT_AERIEN_18_0,
+        });
+        bounds_group.addLayer(layer_BD_CABLE_BT_AERIEN_18);
+        map.addLayer(layer_BD_CABLE_BT_AERIEN_18);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -1290,7 +1470,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/BD_CHEMIN_15.png" /> BD_CHEMIN': layer_BD_CHEMIN_15,'<img src="legend/BD_PARCELLE_14.png" /> BD_PARCELLE': layer_BD_PARCELLE_14,'<img src="legend/BD_BATI_13.png" /> BD_BATI': layer_BD_BATI_13,'<img src="legend/POTAVEC1AMPOULE_12.png" /> POT. AVEC 1 AMPOULE': cluster_POTAVEC1AMPOULE_12,'<img src="legend/POTAVEC2AMPOULES_11.png" /> POT. AVEC 2 AMPOULES': cluster_POTAVEC2AMPOULES_11,'<img src="legend/POTAVEC3AMPOULES_10.png" /> POT. AVEC 3 AMPOULES': cluster_POTAVEC3AMPOULES_10,'<img src="legend/PUISSANCEPOTEAU50A90KwH_9.png" /> PUISSANCE POTEAU 50 A 90 KwH': cluster_PUISSANCEPOTEAU50A90KwH_9,'<img src="legend/URANUS_8.png" /> URANUS': cluster_URANUS_8,'<img src="legend/POTEAU_7.png" /> POTEAU': cluster_POTEAU_7,'<img src="legend/NEPTUNE_6.png" /> NEPTUNE': cluster_NEPTUNE_6,'<img src="legend/MERCURE_5.png" /> MERCURE': cluster_MERCURE_5,'<img src="legend/TERRE_4.png" /> TERRE': cluster_TERRE_4,'<img src="legend/MARS_3.png" /> MARS': cluster_MARS_3,'<img src="legend/VENUS_2.png" /> VENUS': layer_VENUS_2,'<img src="legend/JUPITER_1.png" /> JUPITER': layer_JUPITER_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/BD_CABLE_BT_AERIEN_18.png" /> BD_CABLE_BT_AERIEN': layer_BD_CABLE_BT_AERIEN_18,'<img src="legend/BD_CABLE_BT_17.png" /> BD_CABLE_BT': layer_BD_CABLE_BT_17,'<img src="legend/BD_CABLE_HTA_16.png" /> BD_CABLE_HTA': layer_BD_CABLE_HTA_16,'<img src="legend/BD_CHEMIN_15.png" /> BD_CHEMIN': layer_BD_CHEMIN_15,'<img src="legend/BD_PARCELLE_14.png" /> BD_PARCELLE': layer_BD_PARCELLE_14,'<img src="legend/BD_BATI_13.png" /> BD_BATI': layer_BD_BATI_13,'<img src="legend/POTAVEC1AMPOULE_12.png" /> POT. AVEC 1 AMPOULE': cluster_POTAVEC1AMPOULE_12,'<img src="legend/POTAVEC2AMPOULES_11.png" /> POT. AVEC 2 AMPOULES': cluster_POTAVEC2AMPOULES_11,'<img src="legend/POTAVEC3AMPOULES_10.png" /> POT. AVEC 3 AMPOULES': cluster_POTAVEC3AMPOULES_10,'<img src="legend/PUISSANCEPOTEAU50A90KwH_9.png" /> PUISSANCE POTEAU 50 A 90 KwH': cluster_PUISSANCEPOTEAU50A90KwH_9,'<img src="legend/URANUS_8.png" /> URANUS': cluster_URANUS_8,'<img src="legend/POTEAU_7.png" /> POTEAU': cluster_POTEAU_7,'<img src="legend/NEPTUNE_6.png" /> NEPTUNE': cluster_NEPTUNE_6,'<img src="legend/MERCURE_5.png" /> MERCURE': cluster_MERCURE_5,'<img src="legend/TERRE_4.png" /> TERRE': cluster_TERRE_4,'<img src="legend/MARS_3.png" /> MARS': cluster_MARS_3,'<img src="legend/VENUS_2.png" /> VENUS': layer_VENUS_2,'<img src="legend/JUPITER_1.png" /> JUPITER': layer_JUPITER_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
